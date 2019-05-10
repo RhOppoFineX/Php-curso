@@ -10,3 +10,11 @@ Create table Jobs(
     Visible TINYINT(1) NOT NULL,
     Months INTEGER NOT NULL
 );
+
+-- PDO (PHP Data Object)
+-- Permite estandarizar como trabajar con diferentes sistemas manejadores de bases de datos.
+
+-- ORM (Object Relational Mapping)
+-- Permite crear modelos/objetos basados en las tablas que tenemos en nuestra base de datos. 
+-- Esto permite que la conexión sea más transparente con MySQL/PostgreSQL. Tiene ya validaciones básicas.
+

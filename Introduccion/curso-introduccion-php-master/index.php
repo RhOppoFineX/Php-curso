@@ -146,18 +146,20 @@ $jobs[0]->getTitle(); //Acceder a un elemento anidado en un array
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
-            <?php
-              $size2 = count($projects);//Para ahorrar recursos
-              for($idx = 0; $idx < $size2; $idx++)
-              {               
-
-                if($projects[$idx]->getVisible())
-                {
-                  printElement($projects[$idx]);               
+            <ul>
+              <?php
+                $size2 = count($projects);//Para ahorrar recursos
+                for($idx = 0; $idx < $size2; $idx++)
+                {               
+  
+                  if($projects[$idx]->getVisible())
+                  {
+                    printElement($projects[$idx]);               
+                  }
+  
                 }
-
-              }
-            ?> 
+              ?>
+            </ul>
             <div class="project">
                 <h5>Project X</h5>
                 <div class="row">
