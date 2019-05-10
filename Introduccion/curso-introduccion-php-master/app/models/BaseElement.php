@@ -1,4 +1,6 @@
 <?php
+namespace App\models;
+
 require_once 'Printable.php';
 //Siempre que implementamos una interface siempre tenemos que soobreescribir sus metodos abstractos
 class BaseElement implements Printable{
@@ -74,6 +76,6 @@ class BaseElement implements Printable{
       }
       // Sobreeescribimos el metodo
       public function getPrintable(){
-        $this->Description;
+        return $this->Description;
       }
   }

@@ -1,8 +1,16 @@
 <?php
 
-require 'app/models/Job.php';
-require 'app/models/project.php';
-require_once 'app/libraries/project.php';
+// require 'app/models/Job.php';
+// require 'app/models/project.php';
+// require_once 'app/models/Printable.php';
+
+
+// require_once 'app/libraries/project.php';
+
+require_once 'vendor/autoload.php';//utilizamos el composer para llamar a los archivos
+
+use App\models\{Job, project};//agrupar use
+use App\models\Printable;//cada vez que queramos agregar más archivos los agregamos y repetimos la instalación de composer o update
 
 $job1 = new Job('PHP Developer');//Instancia de la clase Job
 $job1->setDescription('this is a fucking Job');
@@ -29,10 +37,14 @@ $job5->setDescription('This is a inevitable job Alex Hunter');
 $job5->setVisible(true);
 $job5->setMonths(10);
 
-$project1 = new Project('Project 1');
+$project1 = new Project('Projecto 1');
 $project1->setDescription('Description 1');
 $project1->setVisible(true);
 $project1->setMonths(6);
+
+$projectLib = new App\libraries\project();
+//Para demostrar que usamos la clase project que pertenece a la libreria en esta variable
+//Y la project de models en al archivo en general
 
 $projects = [
   $project1  
@@ -88,7 +100,7 @@ function printElement(Printable $job)
 {
   echo '<li class="work-position">' .
   '<h5>' .$job->getTitle(). '</h5>'.
-  '<h6>' .$job->getDescription().  '</h6>'.
+  '<h6>' .$job->getPrintable().  '</h6>'.
   '<h6>' .$job->getDuration().  '</h6>'.
   '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
   <strong>Achievements:</strong>
