@@ -9,13 +9,13 @@ $pass = '';
 
 try{
 
-    $PDO = new PDO($link, $usuario, $pass);
-    echo 'Conectado';
+    $PDO = new PDO($link, $usuario, $pass);  
     
-    foreach($PDO->query('SELECT * from colores') as $fila) {
-        print_r($fila);
-    }
-    $mbd = null;
+    
+    // foreach($PDO->query('SELECT * from colores') as $fila) {
+    //     print_r($fila);
+    // }
+    // $mbd = null;
 
 }catch(PDOException $e){
     print "¡Error!: " . $e->getMessage() . "<br/>";

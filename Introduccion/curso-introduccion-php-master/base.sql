@@ -4,11 +4,13 @@ Create Database cursophp;
 use cursophp
 
 Create table Jobs(
-    Id_job INTEGER PRIMARY KEY Auto_increment NOT NULL,
-    Tittle VARCHAR(50) NOT NULL,
-    `Description` VARCHAR(50) NOT NULL,
-    Visible TINYINT(1) NOT NULL,
-    Months INTEGER NOT NULL
+    id INTEGER PRIMARY KEY Auto_increment NOT NULL,
+    tittle VARCHAR(50) NOT NULL,
+    `description` VARCHAR(50) NOT NULL,
+    visible TINYINT(1),
+    months INTEGER,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
 );
 
 -- PDO (PHP Data Object)

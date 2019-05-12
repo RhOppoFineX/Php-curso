@@ -3,13 +3,17 @@ namespace App\models;
 
 require_once 'BaseElement.php';
 
-class Job extends BaseElement{
+use Illuminate\Database\Eloquent\Model;
 
-    public function __construct ($title)
-    {        
-        $newTitle = "Job: $title";
-        parent::__construct($newTitle);//Llamamos al constructor de la clase padre        
-    }
+class Job extends Model{
+
+   protected $table = 'jobs';//igual para probar el eloquent
+
+    // public function __construct ($title)
+    // {        
+    //     $newTitle = "Job: $title";
+    //     parent::__construct($newTitle);//Llamamos al constructor de la clase padre        
+    // }
 
     //Sobreescribiendo el metodo getDuration
     public function getDuration()
@@ -32,5 +36,7 @@ class Job extends BaseElement{
           return "duración: $years $frecuenciaYears y $meses $frecuenciaMeses"; 
               
       }
+     //Para probar el eloquent solo  
+ 
 
 }
