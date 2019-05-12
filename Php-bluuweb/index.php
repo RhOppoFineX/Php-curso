@@ -1,15 +1,13 @@
 <?php
-    require_once 'conexion.php';
+    include_once 'conexion.php';
     //leer
     $sql_leer = 'Select * From colores';
     $gsent = $PDO->prepare($sql_leer);
     $gsent->execute();
-
     $resultado = $gsent->fetchAll();//Devolvemos un array con los resultados
 
-    // var_dump($resultado);
-    
-    //Agregar
+    //var_dump($resultado);    
+    //Agregar   
 
 
 ?>

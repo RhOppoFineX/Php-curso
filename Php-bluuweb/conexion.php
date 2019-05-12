@@ -6,16 +6,17 @@ $link = 'mysql:host=localhost;dbname=yt_colores';
 
 $usuario = 'root';
 $pass = '';
+$PDO;
 
 try{
 
-    $PDO = new PDO($link, $usuario, $pass);  
-    
+    $PDO = new PDO($link, $usuario, $pass);
+    // echo 'conectado';   
     
     // foreach($PDO->query('SELECT * from colores') as $fila) {
     //     print_r($fila);
     // }
-    // $mbd = null;
+    // $mbd = null;    
 
 }catch(PDOException $e){
     print "¡Error!: " . $e->getMessage() . "<br/>";
