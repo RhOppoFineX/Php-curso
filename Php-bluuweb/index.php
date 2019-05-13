@@ -17,10 +17,13 @@
        $cmd = $pdo->prepare($Insert);
        $cmd->execute(array($color, $description));//Según el orden del insert
 
-    //header('location:index.php'); si no se recarga la pagina
-    
+    //header('location:index.php'); si no se recarga la pagina   
 
-    }   
+    }
+    //Modificar
+    if(($_GET)){
+        $Id_color = $_GET['Id_color'];
+    }
 ?>
 
 <!doctype html>
@@ -32,6 +35,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
@@ -39,23 +44,44 @@
     
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"><!--Leer-->
                 <?php foreach($resultado as $dato)://empieza?>                     
                 <div class="alert alert-<?php echo $dato['Color'];?> text-uppercase" role="alert">
+
                     <?php echo $dato['Color'];//El nombre del campo de la tabla colores (es Sensitive Case)?>
                         -
-                    <?php echo $dato['Description'];?>                    
+                    <?php echo $dato['Description'];?>
+                            <!--Lado derecho-->
+                    <a href="index.php?Id_color=<?php echo $dato['Id_color'];?>" class="float-right"><!--Editar-->
+                        <i class="fas fa-edit"></i>
+                    </a>
+
                 </div>
-                <?php endforeach//termina en dos bloques de codigo diferentes de PHP?>           
+                <?php endforeach//termina en dos bloques de codigo diferentes de PHP ?>           
             </div>
 
-            <div class="col-md-6">
-                <h2>AGREGAR ELEMENTOS</h2>
-               <form method="POST">
-                    <input type="text" class="form-conrtol" name="Color">
-                    <input type="text" class="form-conrtol" name="Description">
-                    <button class="btn btn-primary mt-3">Agregar</button> 
-               </form>                 
+            <div class="col-md-6"><!--Agregar-->
+                <?php if(!$_GET):// Empieza el if ?>
+                    <!--FORM AGREGAR-->
+                    <h2>AGREGAR ELEMENTOS</h2>
+                    <form method="POST">
+                        <input type="text" class="form-conrtol" name="Color">
+                        <input type="text" class="form-conrtol" name="Description">
+                        <button class="btn btn-primary mt-3">Agregar</button> 
+                    </form>
+               <?php endif //Termina el if ?>
+
+
+               <?php if($_GET):// Empieza el if ?>
+                <!--FORM MODIFICAR-->
+                    <h2>MODIFICAR ELEMENTOS</h2>
+                    <form method="GET" action="editar.php">
+                        <input type="text" class="form-conrtol" name="Color">
+                        <input type="text" class="form-conrtol" name="Description">
+                        <button class="btn btn-primary mt-3">Modificar</button> 
+                    </form>
+               <?php endif //Termina el if ?>
+
             </div>          
             
         </div>
