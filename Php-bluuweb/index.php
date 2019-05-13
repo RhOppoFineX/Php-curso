@@ -1,15 +1,26 @@
 <?php
-    include_once 'conexion.php';
+    require_once 'conexion.php';
     //leer
-    $sql_leer = 'Select * From colores';
-    $gsent = $PDO->prepare($sql_leer);
+    $sql_leer = 'Select * From colores';    
+    $gsent = $pdo->prepare($sql_leer);
     $gsent->execute();
     $resultado = $gsent->fetchAll();//Devolvemos un array con los resultados
 
     //var_dump($resultado);    
-    //Agregar   
+    //Agregar
+    if(!empty($_POST))
+    {
+       $color = strtolower($_POST['Color']);
+       $description = $_POST['Description'];
 
+       $Insert = 'INSERT INTO colores (Color, `Description`) VALUES (?, ?)';
+       $cmd = $pdo->prepare($Insert);
+       $cmd->execute(array($color, $description));//Según el orden del insert
 
+    //header('location:index.php'); si no se recarga la pagina
+    
+
+    }   
 ?>
 
 <!doctype html>
@@ -29,35 +40,26 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <?php
-                     foreach($resultado as $dato)://empieza
-                ?>                     
+                <?php foreach($resultado as $dato)://empieza?>                     
                 <div class="alert alert-<?php echo $dato['Color'];?> text-uppercase" role="alert">
-                    <?php
-                        echo $dato['Color'];//El nombre del campo de la tabla colores (es Sensitive Case)                        
-                    ?>
+                    <?php echo $dato['Color'];//El nombre del campo de la tabla colores (es Sensitive Case)?>
                         -
-                    <?php
-                        echo $dato['Description']; 
-                    ?>
+                    <?php echo $dato['Description'];?>                    
                 </div>
-                <?php
-                    endforeach //termina en dos bloques de codigo diferentes de PHP 
-                ?>           
+                <?php endforeach//termina en dos bloques de codigo diferentes de PHP?>           
             </div>
 
             <div class="col-md-6">
-               <form>
-                    <input type="text" class="form-conrtol-lg" name="Color">
-                    <input type="text" class="form-conrtol-lg" name="Description">
+                <h2>AGREGAR ELEMENTOS</h2>
+               <form method="POST">
+                    <input type="text" class="form-conrtol" name="Color">
+                    <input type="text" class="form-conrtol" name="Description">
                     <button class="btn btn-primary mt-3">Agregar</button> 
                </form>                 
             </div>          
             
         </div>
-    </div>
-
-    
+    </div>    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

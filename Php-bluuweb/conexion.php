@@ -2,27 +2,22 @@
 
 //PDO es un estandar para conectarse a diferenetws bases de datos
 
-$link = 'mysql:host=localhost;dbname=yt_colores';
+    $user = 'root';
+    $pass = '';
+    $database = 'yt_colores';
+    $servername = 'mysql:host=localhost;dbname=yt_colores';
+    $pdo = null;
+        try {
+            $pdo = new PDO($servername, $user, $pass);
+            // $con = mysqli_connect('localhost', $user, $pass, $database);                   
+            //   foreach($pdo->query('SELECT * from colores') as $fila) {
+            //       print_r($fila);
+            //   }
+            //  $pdo = null;
+            
+            
+        } catch (PDOException $e) {
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
 
-$usuario = 'root';
-$pass = '';
-$PDO;
-
-try{
-
-    $PDO = new PDO($link, $usuario, $pass);
-    // echo 'conectado';   
-    
-    // foreach($PDO->query('SELECT * from colores') as $fila) {
-    //     print_r($fila);
-    // }
-    // $mbd = null;    
-
-}catch(PDOException $e){
-    print "¡Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
-
-
-
- 
