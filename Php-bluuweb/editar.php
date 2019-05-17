@@ -3,20 +3,20 @@
 // echo 'editar.php?Id_color=1&Color=light&Description=este es un color blanco';
 // echo '<br>';
 
-$Id = $_GET['Id_color'];
-$Color = $_GET['Color'];
+$Id_color = $_GET['Id_color'];
+$Color = strtolower($_GET['Color']);
 $Description = $_GET['Description']; 
 
-// echo $Id;
-// echo '<br>';
-// echo $Color;
-// echo '<br>';
-// echo $Description;
+ echo $Id_color;
+ echo '<br>';
+ echo $Color;
+ echo '<br>';
+ echo $Description;
 
 include_once 'conexion.php';
 
 $sqlEditar = 'UPDATE colores SET Color = ?, `Description`= ? WHERE Id_color = ?';
 $cmd =  $pdo->prepare($sqlEditar);
-$cmd->execute(array($Color, $Description, $Id));
+$cmd->execute(array($Color, $Description, $Id_color));
 
 header('location:index.php');

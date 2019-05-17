@@ -10,19 +10,26 @@
     //Agregar
     if(!empty($_POST))
     {
-       $color = strtolower($_POST['Color']);
-       $description = $_POST['Description'];
+       $Color = strtolower($_POST['Color']);
+       $Description = $_POST['Description'];
 
        $Insert = 'INSERT INTO colores (Color, `Description`) VALUES (?, ?)';
        $cmd = $pdo->prepare($Insert);
-       $cmd->execute(array($color, $description));//Según el orden del insert
+       $cmd->execute(array($Color, $Description));//Según el orden del insert
 
-    //header('location:index.php'); si no se recarga la pagina   
+        header('location:index.php'); //si no se recarga la pagina   
 
     }
     //Modificar
     if(($_GET)){
         $Id_color = $_GET['Id_color'];
+        $sqlUpdate = 'SELECT * FROM  colores WHERE Id_color = ?';
+        $gsentUpdate = $pdo->prepare($sqlUpdate);
+        $gsentUpdate->execute(array($Id_color));
+        $resultadoUpdate = $gsentUpdate->fetch();//Fetch sin el All porque solo es un resultado 
+        
+        //var_dump($resultadoUpdate);
+        
     }
 ?>
 
@@ -51,10 +58,15 @@
                     <?php echo $dato['Color'];//El nombre del campo de la tabla colores (es Sensitive Case)?>
                         -
                     <?php echo $dato['Description'];?>
+
+                    <!--Eliminar    lo colocamos arriba del modificar para que este a la derecha de este      Margin Left -->
+                    <a href="eliminar.php?Id_color=<?php echo $dato['Id_color'];?>" class="float-right ml-3">
+                    <i class="fas fa-trash-alt"></i>  </a>
+
                             <!--Lado derecho-->
                     <a href="index.php?Id_color=<?php echo $dato['Id_color'];?>" class="float-right"><!--Editar-->
                         <i class="fas fa-edit"></i>
-                    </a>
+                    </a>                    
 
                 </div>
                 <?php endforeach//termina en dos bloques de codigo diferentes de PHP ?>           
@@ -75,9 +87,11 @@
                <?php if($_GET):// Empieza el if ?>
                 <!--FORM MODIFICAR-->
                     <h2>MODIFICAR ELEMENTOS</h2>
-                    <form method="GET" action="editar.php">
-                        <input type="text" class="form-conrtol" name="Color">
-                        <input type="text" class="form-conrtol" name="Description">
+                    <form method="GET" action="editar.php"><!--Llamamos al archivo para actualizar-->
+                        <input type="text" class="form-conrtol" name="Color" value="<?php echo $resultadoUpdate['Color'] ?>">
+                        <input type="text" class="form-conrtol" name="Description" value="<?php echo $resultadoUpdate['Description'] ?>">
+                         <input type="text" class="d-none" name="Id_color" value="<?php echo $resultadoUpdate['Id_color'] ?>">                          
+
                         <button class="btn btn-primary mt-3">Modificar</button> 
                     </form>
                <?php endif //Termina el if ?>
