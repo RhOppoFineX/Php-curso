@@ -7,5 +7,8 @@ $sqlDelete = 'DELETE FROM colores WHERE Id_color = ?';
 $cmdDelete = $pdo->prepare($sqlDelete);
 $cmdDelete->execute(array($Id_color));
 
+//Cerramos la conexión y la sentencia preparada
+$cmdDelete = null;
+$pdo = null;
 header('location:index.php'); 
 

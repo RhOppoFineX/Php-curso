@@ -17,6 +17,9 @@
        $cmd = $pdo->prepare($Insert);
        $cmd->execute(array($Color, $Description));//Según el orden del insert
 
+        //Cerramos la conexión y la sentencia preparada
+        $cmd = null;
+        $pdo = null;
         header('location:index.php'); //si no se recarga la pagina   
 
     }
@@ -28,8 +31,7 @@
         $gsentUpdate->execute(array($Id_color));
         $resultadoUpdate = $gsentUpdate->fetch();//Fetch sin el All porque solo es un resultado 
         
-        //var_dump($resultadoUpdate);
-        
+        //var_dump($resultadoUpdate);        
     }
 ?>
 
@@ -108,3 +110,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<?php
+//Cerramos la conexión y la sentencia preparada
+    $pdo = null;
+    $gsent = null;
+?>

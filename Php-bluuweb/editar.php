@@ -18,5 +18,8 @@ include_once 'conexion.php';
 $sqlEditar = 'UPDATE colores SET Color = ?, `Description`= ? WHERE Id_color = ?';
 $cmd =  $pdo->prepare($sqlEditar);
 $cmd->execute(array($Color, $Description, $Id_color));
+//Cerramos la conexión y la sentencia preparada
+$cmd = null;
+$pdo = null;
 
 header('location:index.php');

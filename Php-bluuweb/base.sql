@@ -9,4 +9,10 @@ Create Database yt_colores;
 
 INSERT INTO colores (Color,`Description`) values ('Primary', 'Este es un color azul'), ('Danger', 'Este es un color rojo');
 
- drop table colores;
+--  drop table colores;
+
+CREATE TABLE Usuarios(
+    Id_usuario INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    Nombre_usuario VARCHAR(25) NOT NULL, 
+    `Password` VARCHAR(250) NOT NULL
+);
