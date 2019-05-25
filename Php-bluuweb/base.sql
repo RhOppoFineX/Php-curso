@@ -13,6 +13,7 @@ INSERT INTO colores (Color,`Description`) values ('Primary', 'Este es un color a
 
 CREATE TABLE Usuarios(
     Id_usuario INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-    Nombre_usuario VARCHAR(25) NOT NULL, 
+    Nombre_usuario VARCHAR(25) NOT NULL,
+    Email VARCHAR(50) NOT NULL UNIQUE, 
     `Password` VARCHAR(250) NOT NULL
 );

@@ -15,26 +15,52 @@
     <h2 class="text-center"> Formulario de registro </h2>
     <br>
     <div class="container center">    
-        <form action="agregarUsuario.php" metohd="post">
+        <form action="agregarUsuario.php" method="POST">
             <div class="form-row">
-                <div class="col-sm-3"> 
+                <div class="col-sm-6 mt-3"> 
                     <input type="text" class="form-control" name="Nombre_usuario" placeholder="Ingresa tu usuario">            
                 </div>
-                <div class="col-sm-3"> 
+                <div class="col-sm-6 mt-3"> 
                     <input type="password" class="form-control" name="Password" placeholder="Ingresa tu contraseña">            
                 </div>
-                <div class="col-sm-3"> 
+                <div class="col-sm-6 mt-3"> 
                     <input type="password" class="form-control" name="Password2" placeholder="Repite tu contraseña">            
                 </div>
-                <div class="col-sm-3"> 
+                <div class="col-sm-6 mt-3"> 
                     <input type="email" class="form-control" name="Email" placeholder="Ingresa tu correo">            
                 </div>
 
-                    <button type="submit" class="btn btn-primary"> Guardar </button>               
-                        
+                <div class="offset-sm-5 mt-3">
+                    <button type="submit" class="btn btn-primary btn-lg"> Guardar </button>
+                </div>                         
             </div>
 
         </form>  
+    </div>
+
+    <br>
+
+
+    <div class="container center">
+        <h2 class="text-center"> Iniciar Sesión </h2>
+
+        <form action="login.php" method="POST">
+
+            <div class="form-row">
+                <div class="col-sm-4 mt-3 offset-sm-4"> 
+                    <input type="text" class="form-control" name="Nombre_usuario" placeholder="Ingresa tu usuario">            
+                </div>
+                <div class="col-sm-4 mt-3 offset-sm-4"> 
+                    <input type="password" class="form-control" name="Password" placeholder="Ingresa tu contraseña">            
+                </div>
+
+                <div class="offset-sm-5 mt-3 center">
+                    <button type="submit" class="btn btn-success btn-lg"> Iniciar Sesión </button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 </body>
 </html>

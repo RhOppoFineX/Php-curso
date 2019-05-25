@@ -15,7 +15,7 @@
             //   }
             //  $pdo = null;
             
-            
+            //echo '<br>  Conectado <br>';
         } catch (PDOException $e) {
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
