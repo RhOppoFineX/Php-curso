@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+</head>
+<body>
+    <h1 id="datos">
+        
+
+    </h1>
+                                    <!--el evento onlcick llama a una funcion-->
+    <button class="btn btn-success btn-lg" onclick="obtener('dolar')"> dolar </button>
+    <button class="btn btn-primary btn-lg" onclick="obtener('euro')"> euro </button>
+
+    <ul id="resultado">
+        <li>Este list item desparece debido a que Sobreescribimos el html dentro de ul en el metodo obtener</li> 
+    </ul>
+    
+    
+    <script>
+        function obtener(moneda)
+        {
+            //toma la url en string y la captura
+            //el then es una promesa 
+            fetch('http://localhost/Curso-php/Php-bluuweb/API-PHP/Backend/' + moneda)
+            .then(datos=>datos.json())
+            .then(datos=>{
+                console.log(datos);
+                //document.getElementById('datos').innerHTML = `Dolar: ${datos.dolar} - Euro: ${datos.euro}`
+
+                var resultado = document.getElementById('resultado'); //traemos el elemento del html con que tenga el id "resultado"
+
+                resultado.innerHTML = ''; // inserta dentro de la etiqueta con ese id "Sobreescribe o agrega html dentro de esa etiqueta"
+                //Esta linea esta como ejemplo y limpia para que no se acumulen los datos al presionar varias veces el boton
+                for(let dato of datos) //datos es el array y let datos la variable temporal por cada iteración del ciclo
+                {
+                    resultado.innerHTML += `
+                        <li> Id: ${dato.Id} - Fecha: ${dato.Fecha} - Valor: ${dato.valor} </li>
+                    `; //Concatenamos el string para producir varios li y formar la lista con todos los datos                    
+                }
+                    
+            });
+        }
+
+        //con el metodo then traemos los datos en formato json después de llamar a la url
+        //Y luego con el otro then imprimimos los datos consola y el html 
+        //Comillas invertidas para poder combinar las variables con codigo html 
+        //el getElementById('datos') indica a que a la etiqueta con ese Id (datos) le insertaremos un html dentro de ella con el innerHTML
+    </script>
+</body>
+</html>

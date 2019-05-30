@@ -1,0 +1,12 @@
+#comparte los enlaces
+Options +FollowSymLinks
+
+#Reescribir la url
+RewriteEngine On
+
+#Reredirigir a la url
+#RewriteRule ExpresiónRegular, URL de destino, [banderas] este ultimo parámetro es opcional
+
+RewriteRule ^([a-zA-Z0-9]*)$  datos.php?moneda=$1 
+
+
