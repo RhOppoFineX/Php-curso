@@ -1,7 +1,7 @@
 <?php
     require_once 'conexion.php';
     //leer
-    $sql_leer = 'Select * From colores';    
+    $sql_leer = 'SELECT * FROM colores';    
     $gsent = $pdo->prepare($sql_leer);
     $gsent->execute();
     $resultado = $gsent->fetchAll();//Devolvemos un array con los resultados

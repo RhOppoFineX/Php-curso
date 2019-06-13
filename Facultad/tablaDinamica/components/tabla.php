@@ -1,3 +1,7 @@
+<?php
+    require_once '../php/conexion.php';
+    $conexion = conexion();
+?>
 
 <div class="row">
     <div class="col-sm-12">
@@ -16,11 +20,18 @@
                 <td>Editar</td>
                 <td>Eliminar</td>
             </tr>
+                <?php
+                    $sql = 'SELECT * FROM Persona';
+                    //Api
+                    $result = mysqli_query($conexion, $sql);
+
+                    while($ver = mysqli_fetch_row($result)):                    
+                ?>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td> <?php echo $ver[1]; ?> </td>
+                <td> <?php echo $ver[2]; ?> </td>
+                <td> <?php echo $ver[3]; ?> </td>
+                <td> <?php echo $ver[4]; ?> </td>
                 <td>                                  <!--Para abrir el modal correspondiente-->
                     <button class="btn btn-warning btn-lg"  data-toggle="modal" data-target="#modalEdicion"> <i class="fas fa-pen"></i> </button>
                 </td>
@@ -28,6 +39,7 @@
                     <button class="btn btn-danger btn-lg"> <i class="fas fa-times"></i> </button>
                 </td>
             </tr>
+            <?php endwhile ?>
         </table>
     </div>
 </div>
